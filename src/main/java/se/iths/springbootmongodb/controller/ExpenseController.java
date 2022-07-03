@@ -28,15 +28,20 @@ public class ExpenseController {
         return ResponseEntity.ok(service.getAllExpenses());
     }
 
-    public void updateExpense() {
-        //TODO Implement update expense method
+    @PutMapping
+    public ResponseEntity<?> updateExpense(@RequestBody Expense expense) {
+        service.updateExpense(expense);
+        return ResponseEntity.ok().build();
     }
 
-    public void getExpenseByName() {
-        //TODO Implement a method to get all expenses by name
+    @GetMapping("/{name}")
+    public ResponseEntity<Expense> getExpenseByName(@PathVariable String name) {
+        return ResponseEntity.ok(service.getExpenseByName(name));
     }
 
-    public void deleteExpense() {
-        //TODO Implement method to delete a expense
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Object> deleteExpense(@PathVariable String id) {
+        service.deleteExpense(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 }

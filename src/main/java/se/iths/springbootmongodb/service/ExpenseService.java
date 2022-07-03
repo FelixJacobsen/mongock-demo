@@ -23,15 +23,25 @@ public class ExpenseService {
         return repository.findAll();
     }
 
-    public void updateExpense() {
-        //TODO Implement update expense method
+    public void updateExpense(Expense expense) {
+        Expense foundExpense = repository.findById(expense.getId())
+                .orElseThrow(() -> new RuntimeException(
+                        String.format("Cannot find expense with id" + expense.getId())
+                ));
+        foundExpense.setExpenseName(expense.getExpenseName());
+        foundExpense.setExpenseAmount(expense.getExpenseAmount());
+        foundExpense.setExpenseCategory(expense.getExpenseCategory());
+
+        repository.save(foundExpense);
     }
 
-    public void getExpenseByName() {
-        //TODO Implement a method to get all expenses by name
+    public Expense getExpenseByName(String name) {
+        return repository.findByName(name).orElseThrow(
+                () -> new RuntimeException(String.format("Cannot find Expense by name %s", name)));
+
     }
 
-    public void deleteExpense() {
-        //TODO Implement method to delete a expense
+    public void deleteExpense(String id) {
+        repository.deleteById(id);
     }
 }
