@@ -1,12 +1,20 @@
 package se.iths.springbootmongodb.service;
 
 import org.springframework.stereotype.Service;
+import se.iths.springbootmongodb.model.Expense;
+import se.iths.springbootmongodb.repository.ExpenseRepository;
 
 @Service
 public class ExpenseService {
 
-    public void addExpense() {
-        //TODO Implement add expense method
+    private final ExpenseRepository repository;
+
+    public ExpenseService(ExpenseRepository repository) {
+        this.repository = repository;
+    }
+
+    public void addExpense(Expense expense) {
+        repository.insert(expense);
     }
 
     public void updateExpense() {
