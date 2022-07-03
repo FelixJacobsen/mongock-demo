@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import se.iths.springbootmongodb.model.Expense;
 import se.iths.springbootmongodb.repository.ExpenseRepository;
 
+import java.util.List;
+
 @Service
 public class ExpenseService {
 
@@ -17,12 +19,12 @@ public class ExpenseService {
         repository.insert(expense);
     }
 
-    public void updateExpense() {
-        //TODO Implement update expense method
+    public List<Expense> getAllExpenses() {
+        return repository.findAll();
     }
 
-    public void getAllExpenses() {
-        //TODO Implement get all expenses method
+    public void updateExpense() {
+        //TODO Implement update expense method
     }
 
     public void getExpenseByName() {

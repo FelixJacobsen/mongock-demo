@@ -2,12 +2,11 @@ package se.iths.springbootmongodb.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import se.iths.springbootmongodb.model.Expense;
 import se.iths.springbootmongodb.service.ExpenseService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/expense")
@@ -24,12 +23,13 @@ public class ExpenseController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    public void updateExpense() {
-        //TODO Implement update expense method
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Expense>> getAllExpenses() {
+        return ResponseEntity.ok(service.getAllExpenses());
     }
 
-    public void getAllExpenses() {
-        //TODO Implement get all expenses method
+    public void updateExpense() {
+        //TODO Implement update expense method
     }
 
     public void getExpenseByName() {
